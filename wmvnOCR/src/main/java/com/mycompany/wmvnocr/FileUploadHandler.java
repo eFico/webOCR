@@ -24,7 +24,11 @@ import net.sourceforge.tess4j.TesseractException;
  */
 
 public class FileUploadHandler extends HttpServlet {
-    private final String UPLOAD_DIRECTORY = "C:/Users/User/Documents/NetBeansProjects/wmvnOCR/src/main/webapp/uploads";
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private final String UPLOAD_DIRECTORY = "C:/Users/User/Documents/NetBeansProjects/wmvnOCR/src/main/webapp/uploads";
   
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -39,7 +43,8 @@ public class FileUploadHandler extends HttpServlet {
         //process only if its multipart content
         if(ServletFileUpload.isMultipartContent(request)){
             try {
-                List<FileItem> multiparts = new ServletFileUpload(
+                @SuppressWarnings("unchecked")
+				List<FileItem> multiparts = new ServletFileUpload(
                                          new DiskFileItemFactory()).parseRequest(request);
               
                 for(FileItem item : multiparts){
